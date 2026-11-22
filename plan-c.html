@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>案C 紺と金｜Alteor DM</title>
+<link rel="stylesheet" href="shared/sheet.css">
+<style>
+  /* 案C 紺と金：濃紺に金の細い線。警告の赤を使わず、「確認しましょう」という落ち着いた語り口にする。 */
+  .sheet { --navy: #0f2244; --navy-2: #16305c; --gold: #b8975a; --gold-l: #e6cf9c; --gold-d: #94773c; --ivory: #fbf9f4; --txt: #1b2333; --pale: #d5dcea; --fig: Didot, "Bodoni 72", "Times New Roman", serif; color: var(--txt); }
+
+  /* ===== 表面 ===== */
+  .front .zone { position: absolute; top: 103mm; left: 0; width: 216mm; height: 200mm; border-top: 1.2mm solid var(--gold); background: linear-gradient(180deg, #14305f 0, var(--navy) 50%, #0b1a36 100%); color: #fff; }
+  .front h1 { position: absolute; top: 10.5mm; left: 0; width: 216mm; font: 600 30pt/1.3 var(--mincho); letter-spacing: .04em; text-align: center; }
+  .front h1 em { display: block; color: var(--gold-l); font-size: 46pt; line-height: 1.25; letter-spacing: .06em; }
+  .front .orn { position: absolute; top: 48mm; left: 83mm; width: 50mm; height: .2mm; background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent); }
+  .front .orn::after { content: ""; position: absolute; top: -1.1mm; left: 23.8mm; width: 2.4mm; height: 2.4mm; background: var(--gold); transform: rotate(45deg); }
+  .front .sub { position: absolute; top: 53mm; left: 0; width: 216mm; color: var(--pale); font-size: 11pt; line-height: 1.75; text-align: center; }
+  .front .sub b { color: var(--gold-l); }
+
+  .front .card { position: absolute; top: 77mm; left: 10mm; width: 196mm; height: 62mm; padding-top: 6.5mm; border-radius: 1.2mm; background: var(--ivory); color: var(--txt); }
+  .front .sec { display: flex; align-items: center; gap: 4mm; padding: 0 8mm; color: var(--navy); font: 600 13.5pt/1.4 var(--mincho); letter-spacing: .04em; white-space: nowrap; }
+  .front .sec::before, .front .sec::after { content: ""; flex: 1; height: .2mm; background: var(--gold); }
+  .front .four { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 5.4mm; padding: 0 4.4mm; }
+  .front .four li { padding: 0 3mm; border-left: .2mm solid var(--gold); }
+  .front .four li:first-child { border-left: 0; }
+  .front .four .n { display: block; color: var(--gold-d); font: italic 400 18pt/1 var(--fig); }
+  .front .four h3 { margin-top: 2.6mm; color: var(--navy); font: 600 13pt/1.4 var(--mincho); white-space: nowrap; }
+  .front .four p { margin-top: 2mm; color: #3a4252; font-size: 9.6pt; line-height: 1.6; white-space: nowrap; }
+  .front .four .ck { display: flex; align-items: center; gap: 1.8mm; margin-top: 3.6mm; color: var(--navy); font-size: 9pt; font-weight: 700; }
+  .front .four .ck::before { content: ""; flex: none; width: 3.3mm; height: 3.3mm; border: .3mm solid var(--navy); background: #fff; }
+
+  .front .foot { position: absolute; top: 146.5mm; left: 10mm; width: 196mm; height: 46mm; }
+  .front .logo { position: absolute; top: 2.5mm; left: 0; font: 400 28pt/1 var(--logo); }
+  .front .tag { position: absolute; top: 7.6mm; left: 45mm; color: var(--pale); font-size: 8.8pt; font-weight: 700; white-space: nowrap; }
+  .front .custom { position: absolute; top: 18mm; left: 0; display: flex; align-items: center; gap: 3mm; font-size: 9.6pt; white-space: nowrap; }
+  .front .custom b { padding: .8mm 4mm; border-radius: 5mm; background: var(--gold); color: var(--navy); font-size: 9.2pt; }
+  .front .tel { position: absolute; top: 28.5mm; left: 0; display: flex; align-items: baseline; gap: 3.6mm; }
+  .front .tel span { color: var(--gold-l); font-size: 9.5pt; font-weight: 700; letter-spacing: .12em; }
+  .front .tel b { font: 400 23pt/1.2 var(--fig); letter-spacing: .03em; }
+  .front .qrs { position: absolute; top: 2.5mm; right: 0; display: flex; gap: 3mm; }
+  .front .qrs figure { display: flex; flex-direction: column; align-items: center; width: 33mm; }
+  .front .qr { outline: .3mm solid var(--gold); outline-offset: .8mm; }
+  .front .qrs figcaption { margin-top: 3mm; color: var(--pale); font-size: 8.2pt; line-height: 1.5; text-align: center; white-space: nowrap; }
+  .front .qrs figcaption b { display: block; color: #fff; font-size: 9.6pt; }
+
+  /* ===== 裏面 ===== */
+  .back .head { position: absolute; top: 0; left: 0; width: 216mm; height: 66mm; padding: 14.5mm 13mm 0; overflow: hidden; border-bottom: 1.2mm solid var(--gold); background: linear-gradient(180deg, #14305f, var(--navy)); color: #fff; }
+  .back .head::after { content: ""; position: absolute; right: 0; bottom: 0; width: 90mm; height: 100%; background: repeating-radial-gradient(circle at 100% 100%, transparent 0 5.8mm, rgba(184, 151, 90, .34) 5.8mm 6mm); -webkit-mask-image: linear-gradient(to left, #000, transparent); mask-image: linear-gradient(to left, #000, transparent); }
+  .back .head h1 { font: 600 30pt/1.25 var(--mincho); letter-spacing: .05em; }
+  .back .head h1::after { content: ""; display: block; width: 18mm; height: .6mm; margin-top: 3.6mm; background: var(--gold); }
+  .back .head .sub { margin-top: 4mm; color: var(--gold-l); font: 600 15pt/1.5 var(--mincho); letter-spacing: .05em; }
+  .back .head .lead { margin-top: 2.2mm; color: var(--pale); font-size: 10pt; line-height: 1.75; }
+
+  .back .cards { position: absolute; top: 75mm; left: 13mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; width: 190mm; height: 108mm; }
+  .back .card { display: flex; flex-direction: column; padding: 6.5mm 5mm 0; border: .25mm solid var(--gold); background: #fff; }
+  .back .card .ico { display: grid; place-items: center; width: 17mm; height: 17mm; border: .3mm solid var(--gold); border-radius: 50%; color: var(--navy); }
+  .back .card .ico svg { width: 9.5mm; height: 9.5mm; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .back .card h2 { margin-top: 4.2mm; color: var(--navy); font: 600 18.5pt/1.3 var(--mincho); letter-spacing: .04em; }
+  .back .card h2 small { display: block; font-size: 10.5pt; line-height: 1.5; letter-spacing: .06em; }
+  .back .card h2::after { content: ""; display: block; width: 10mm; height: .5mm; margin: 3.2mm 0; background: var(--gold); }
+  .back .card p { color: #2b3344; font-size: 9.8pt; line-height: 1.8; text-align: justify; }
+  .back .card .gain { margin: auto -5mm 0; padding: 4.2mm 5mm; background: var(--navy); color: #fff; font: 600 10.2pt/1.65 var(--mincho); font-feature-settings: "palt"; letter-spacing: .02em; text-align: left; white-space: nowrap; }
+  .back .notes { position: absolute; top: 187.6mm; left: 13mm; color: #5e6675; font-size: 7.6pt; line-height: 1.7; }
+
+  .back .cta { position: absolute; top: 208mm; left: 0; width: 216mm; height: 95mm; padding: 8.5mm 13mm 0; border-top: 1.2mm solid var(--gold); background: linear-gradient(180deg, var(--navy), #0b1a36); color: #fff; }
+  .back .cta h2 { font: 600 24pt/1.3 var(--mincho); letter-spacing: .05em; }
+  .back .cta .free { display: inline-flex; align-items: baseline; margin-top: 3.6mm; padding: 1.2mm 6mm 1.6mm; border: .3mm solid var(--gold); font: 600 13.5pt/1.3 var(--mincho); letter-spacing: .03em; }
+  .back .cta .free em { margin: 0 .6mm 0 1.6mm; color: var(--gold-l); font-size: 25pt; letter-spacing: .08em; }
+  .back .cta .txt { margin-top: 3.6mm; font-size: 10.2pt; line-height: 1.75; }
+  .back .cta .small { margin-top: 1.4mm; color: #a9b4c8; font-size: 7.6pt; }
+  .back .contact { position: absolute; top: 64.5mm; left: 13mm; display: flex; align-items: center; gap: 9mm; width: 150mm; padding-top: 3.4mm; border-top: .2mm solid var(--gold); }
+  .back .contact .logo { font: 400 24pt/1 var(--logo); }
+  .back .contact dl { display: grid; grid-template-columns: auto 1fr; gap: .4mm 3.5mm; align-items: baseline; }
+  .back .contact dt { color: var(--gold-l); font-size: 8.8pt; font-weight: 700; }
+  .back .contact .t { font: 400 20pt/1.15 var(--fig); letter-spacing: .03em; }
+  .back .contact .u { font-size: 9.4pt; }
+  .back .cta figure { position: absolute; top: 54mm; right: 14mm; display: flex; flex-direction: column; align-items: center; }
+  .back .cta figure .qr { width: 23mm; height: 23mm; outline: .3mm solid var(--gold); outline-offset: .8mm; }
+  .back .cta figcaption { margin-top: 2.6mm; font-size: 8.4pt; font-weight: 700; }
+</style>
+</head>
+<body data-plan="C" data-name="紺と金" data-note="濃紺に金の細い線。警告色を使わず、確認事項をチェックリストとして見せる、士業向けの落ち着いた案。">
+<main class="stage">
+
+<section class="sheet front" data-label="表面（宛名面）">
+  <div class="zone">
+    <h1>その案件情報を、クラウドAIに送って<em>大丈夫ですか。</em></h1>
+    <i class="orn"></i>
+    <p class="sub">依頼人の人生に関わる<b>機密情報</b>が、<br>海外のサーバーに送信・保存される可能性があります。</p>
+
+    <div class="card">
+      <h2 class="sec">クラウドAIの利用前に、確認したい4つのこと</h2>
+      <ol class="four">
+        <li><span class="n">01</span><h3>個人情報</h3><p>氏名・住所・連絡先<br>相談内容・家族情報など</p><p class="ck">入力する情報を確認</p></li>
+        <li><span class="n">02</span><h3>証拠資料</h3><p>書面・写真・PDF<br>音声データなど</p><p class="ck">利用先と保存先を確認</p></li>
+        <li><span class="n">03</span><h3>書面案・交渉方針</h3><p>未提出の書面案<br>起案中の方針など</p><p class="ck">外部への送信範囲を確認</p></li>
+        <li><span class="n">04</span><h3>情報の管理</h3><p>サービスごとに異なる<br>データの取り扱い</p><p class="ck">保存・利用条件を確認</p></li>
+      </ol>
+    </div>
+
+    <div class="foot">
+      <span class="logo">Alteor</span>
+      <p class="tag">案件情報を外部クラウドAIへ送信しない、事務所内AI。</p>
+      <p class="custom"><b>カスタマイズ対応</b>事務所ごとに必要な機能をご相談いただけます。</p>
+      <p class="tel"><span>TEL</span><b class="tbd">00-0000-0000</b></p>
+      <div class="qrs">
+        <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
+        <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet back" data-label="裏面">
+  <header class="head">
+    <h1>たとえば、こんな案件に。</h1>
+    <p class="sub">定型作業はAIに、判断は先生に。</p>
+    <p class="lead">機密情報を外部クラウドAIへ送信せず、<br>先生と事務職員の皆さまの資料整理・書面作成を支援します。</p>
+  </header>
+
+  <div class="cards">
+    <article class="card">
+      <span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="8" width="36" height="32" rx="2"/><path d="M6 16h36M6 24h36M6 32h36M18 16v24M30 16v24"/></svg></span>
+      <h2>破産・再生<small>の案件なら</small></h2>
+      <p>債権者から届く資料をまとめ、債権者一覧表の作成を支援。収入・支出や財産の情報も、一覧に整理します。</p>
+      <p class="gain">資料の転記・集計を減らし、<br>案件の検討に時間を。</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h17l8 8v28H12z"/><path d="M29 6v8h8M17 22h15M17 28h15M17 34h9"/></svg></span>
+      <h2>離婚<small>の案件なら</small></h2>
+      <p>面談メモや収入・財産の資料を整理し、申立書の下書きや、財産分与に向けた財産の一覧づくりを支援。</p>
+      <p class="gain">相談内容を整理して、<br>書面にまとめる負担を軽く。</p>
+    </article>
+    <article class="card">
+      <span class="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="7" width="13" height="8" rx="1.5"/><rect x="29" y="7" width="13" height="8" rx="1.5"/><path d="M19 11h10M24 11v13M10 24h28M10 24v7M24 24v7M38 24v7"/><rect x="4" y="31" width="12" height="8" rx="1.5"/><rect x="18" y="31" width="12" height="8" rx="1.5"/><rect x="32" y="31" width="12" height="8" rx="1.5"/></svg></span>
+      <h2>遺産相続<small>の案件なら</small></h2>
+      <p>戸籍や財産の資料から、相続人・遺産の情報を整理。相続関係図の案や、遺産分割の申立書づくりを支援します。</p>
+      <p class="gain">何通もの資料を読み合わせ、<br>書き写す手間を減らすために。</p>
+    </article>
+  </div>
+
+  <p class="notes">※事務所の書式・業務に合わせた設定・追加開発を含む活用例です。<br>対応範囲・読み取り精度は資料をもとに確認します。<br>AIの出力は先生・事務職員の皆さまが確認し、法的な判断は先生が行います。</p>
+
+  <div class="cta">
+    <h2>まずは、ご相談だけでも。</h2>
+    <p class="free">ご相談からPoC（導入前のお試し検証）まで<em>無料</em>。</p>
+    <p class="txt">「この業務にも使える？」から、お聞かせください。<br>実際の使い方を確かめてから、導入をご検討いただけます。</p>
+    <p class="small">※無料検証の対象・範囲は事前にご相談。本導入・機材費は別途。</p>
+    <div class="contact">
+      <span class="logo">Alteor</span>
+      <dl>
+        <dt>無料相談</dt><dd class="t tbd">00-0000-0000</dd>
+        <dt>ご相談・詳細</dt><dd class="u tbd">［ホームページURL］</dd>
+      </dl>
+    </div>
+    <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption>ご相談・詳細</figcaption></figure>
+  </div>
+</section>
+
+</main>
+<script src="shared/sheet.js"></script>
+</body>
+</html>

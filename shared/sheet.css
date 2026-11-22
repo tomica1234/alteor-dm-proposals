@@ -1,0 +1,73 @@
+/* 共通：シート（塗り足し込み 216×303mm）の表示・ガイド線・PDF書き出し
+   各案のHTMLは .sheet.front / .sheet.back の中身とその案だけのCSSを持つ。 */
+
+:root {
+  --mincho: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+  --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+  --logo: Georgia, "Times New Roman", serif;
+  --num: "Helvetica Neue", Arial, sans-serif;
+  --k: 1;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #e3e5ea; color: #16181d; font-family: var(--gothic); -webkit-font-smoothing: antialiased; }
+
+/* ---------- ビューアのバー（画面だけ） ---------- */
+.bar { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 20px; border-bottom: 1px solid rgba(0, 0, 0, .12); background: rgba(255, 255, 255, .94); backdrop-filter: blur(8px); font-size: 13px; line-height: 1.5; }
+.bar a { color: inherit; }
+.bar .ttl { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.bar .note { flex: 1 1 320px; min-width: 0; color: #5b6270; }
+.bar nav { display: flex; gap: 4px; }
+.bar nav a { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(0, 0, 0, .16); border-radius: 6px; font-weight: 600; text-decoration: none; }
+.bar nav a[aria-current] { border-color: #16181d; background: #16181d; color: #fff; }
+.bar label { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; }
+.bar button { padding: 6px 12px; border: 1px solid #16181d; border-radius: 6px; background: #16181d; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.legend { display: none; flex-wrap: wrap; gap: 4px 14px; width: 100%; color: #5b6270; font-size: 12px; }
+.show-guides .legend { display: flex; }
+.legend i { display: inline-block; width: 18px; height: 0; margin-right: 5px; border-top: 2px solid; vertical-align: middle; }
+.legend .l-trim { border-color: #00a0e9; }
+.legend .l-safe { border-color: #e4007f; border-top-style: dashed; }
+.legend .l-tbd { width: 14px; height: 10px; border: 1px dashed #e4007f; }
+
+/* ---------- シートの並び ---------- */
+.stage { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 28px; padding: 24px 20px 56px; }
+.sheet-wrap { flex: none; }
+.sheet-cap { margin: 0 0 8px; color: #5b6270; font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.sheet-box { width: calc(216mm * var(--k)); height: calc(303mm * var(--k)); background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 12px 32px rgba(0, 0, 0, .14); }
+
+.sheet { position: relative; width: 216mm; height: 303mm; overflow: hidden; background: #fff; color: #16181d; font-size: 10pt; line-height: 1.6; transform: scale(var(--k)); transform-origin: 0 0; line-break: strict; }
+.sheet h1, .sheet h2, .sheet h3, .sheet p, .sheet ul, .sheet ol, .sheet dl, .sheet dd, .sheet figure { margin: 0; padding: 0; }
+.sheet ul, .sheet ol { list-style: none; }
+.sheet em { font-style: normal; }
+.sheet svg { display: block; }
+
+/* ---------- QR の仮置き（URL確定後に差し替え） ---------- */
+.qr { position: relative; display: grid; place-items: center; width: 24mm; height: 24mm; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='%23151515' fill-rule='evenodd' d='M0 0h7v7H0zM1 1h5v5H1zM2 2h3v3H2zM14 0h7v7h-7zM15 1h5v5h-5zM16 2h3v3h-3zM0 14h7v7H0zM1 15h5v5H1zM2 16h3v3H2zM9 0h1v1H9zM11 1h2v1h-2zM8 3h1v2H8zM10 4h3v1h-3zM9 6h1v1H9zM12 6h1v1h-1zM0 9h2v1H0zM3 8h1v2H3zM5 10h2v1H5zM1 11h1v2H1zM4 12h2v1H4zM15 8h2v1h-2zM18 9h3v1h-3zM14 10h1v2h-1zM17 11h2v1h-2zM20 12h1v1h-1zM8 15h1v2H8zM10 14h2v1h-2zM12 16h1v3h-1zM9 18h2v1H9zM8 20h3v1H8zM14 14h2v2h-2zM18 15h1v1h-1zM16 17h3v1h-3zM20 16h1v3h-1zM15 19h2v2h-2zM19 20h2v1h-2z'/%3E%3C/svg%3E") center / calc(100% - 3mm) no-repeat; color: #4a4f5a; font: 600 5.4pt/1.4 var(--gothic); letter-spacing: 0; text-align: center; }
+.qr span { padding: .5mm .8mm; background: #fff; }
+
+/* ---------- ガイド線（画面だけ・印刷されない） ---------- */
+.guides { position: absolute; inset: 0; z-index: 90; display: none; pointer-events: none; }
+.show-guides .guides { display: block; }
+.guides i { position: absolute; display: block; font-style: normal; }
+.guides .trim { inset: 3mm; border: .25mm solid #00a0e9; }
+.guides .safe { inset: 6mm; border: .25mm dashed #e4007f; }
+.guides .addr { top: 0; left: 0; display: grid; place-items: center; width: 100%; height: 103mm; border-bottom: .25mm solid #00a0e9; background: repeating-linear-gradient(-45deg, rgba(0, 160, 233, .1) 0 2mm, transparent 2mm 4mm); color: #0077b3; font: 600 11pt var(--gothic); }
+.show-guides .tbd { outline: .3mm dashed #e4007f; outline-offset: .7mm; }
+
+/* ---------- 一覧ページのサムネイル用（?view=front / ?view=back） ---------- */
+html.embed body { background: #fff; }
+html.embed .stage { display: block; padding: 0; }
+html.embed .sheet-cap { display: none; }
+html.embed .sheet-box { box-shadow: none; }
+
+/* ---------- 印刷・PDF（1ページ＝216×303mm、塗り足し込み） ---------- */
+@page { size: 216mm 303mm; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .bar, .sheet-cap, .guides { display: none !important; }
+  .stage { display: block; padding: 0; }
+  .sheet-box { width: 216mm; height: 303mm; overflow: hidden; box-shadow: none; break-after: page; }
+  .sheet-wrap:last-child .sheet-box { break-after: auto; }
+  .sheet { transform: none; }
+}

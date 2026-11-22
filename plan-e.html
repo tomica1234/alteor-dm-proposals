@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>案E 図解｜Alteor DM</title>
+<link rel="stylesheet" href="shared/sheet.css">
+<style>
+  /* 案E 図解：明るい生成りと深い緑。情報の流れと「資料→成果物」を図で見せ、事務職員の方にも読みやすくする。 */
+  .sheet { --teal: #0f4f4a; --teal-2: #1f7a70; --mint: #e4f1ed; --line: #cfe3dd; --cream: #fbf8f1; --org: #e66a2c; --org-d: #c2521b; --txt: #1e2b2a; --mute: #5f6b69; color: var(--txt); }
+  .sheet svg text { font-family: var(--gothic); font-weight: 700; }
+
+  /* ===== 表面 ===== */
+  .front .hero { position: absolute; top: 103mm; left: 0; width: 216mm; height: 83mm; background: var(--mint); }
+  .front h1 { position: absolute; top: 8.6mm; left: 12mm; color: var(--teal); font-size: 29pt; font-weight: 800; line-height: 1.3; white-space: nowrap; }
+  .front h1 em { display: block; color: var(--org); font-size: 38pt; line-height: 1.25; }
+  .front .sub { position: absolute; top: 55.5mm; left: 12mm; font-size: 10.2pt; line-height: 1.75; white-space: nowrap; }
+  .front .sub b { color: var(--org-d); }
+  .front .dia { position: absolute; top: 6mm; left: 116mm; width: 90mm; height: 72mm; }
+
+  .front .lower { position: absolute; top: 186mm; left: 0; width: 216mm; height: 65mm; background: var(--cream); }
+  .front .sec { position: absolute; top: 4mm; left: 11mm; display: flex; align-items: center; gap: 2.4mm; color: var(--teal); font-size: 12.5pt; font-weight: 700; }
+  .front .sec::before { content: ""; width: 1.4mm; height: 5mm; border-radius: 1mm; background: var(--org); }
+  .front .four { position: absolute; top: 13.5mm; left: 10mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; width: 196mm; height: 46mm; }
+  .front .four li { display: flex; flex-direction: column; padding: 4mm 3.4mm 3.6mm; border: .25mm solid var(--line); border-radius: 3mm; background: #fff; }
+  .front .four .hd { display: flex; align-items: center; gap: 2mm; }
+  .front .four .n { display: grid; place-items: center; flex: none; width: 7.4mm; height: 7.4mm; border-radius: 50%; background: var(--teal); color: #fff; font: 700 9.5pt/1 var(--num); }
+  .front .four h3 { color: var(--teal); font-size: 10.6pt; font-weight: 700; font-feature-settings: "palt"; white-space: nowrap; }
+  .front .four p { margin-top: 2.8mm; font-size: 9pt; line-height: 1.6; white-space: nowrap; }
+  .front .four .ck { display: flex; align-items: center; gap: 1.6mm; margin-top: auto; padding-top: 2.4mm; border-top: .25mm dashed var(--line); color: var(--teal); font-size: 8.4pt; font-weight: 700; }
+  .front .four .ck::before { content: ""; flex: none; width: 3.6mm; height: 3.6mm; border-radius: 50%; background: var(--org) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3.2 6.3l2 2 3.8-4.4' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+
+  .front .foot { position: absolute; top: 251mm; left: 0; width: 216mm; height: 52mm; background: var(--teal); color: #fff; }
+  .front .logo { position: absolute; top: 5.4mm; left: 11mm; font: 400 26pt/1 var(--logo); }
+  .front .tag { position: absolute; top: 9.2mm; left: 54mm; font-size: 8.8pt; font-weight: 600; white-space: nowrap; }
+  .front .custom { position: absolute; top: 18mm; left: 11mm; display: flex; align-items: center; gap: 3mm; font-size: 9.6pt; white-space: nowrap; }
+  .front .custom b { padding: .8mm 3.6mm; border-radius: 5mm; background: var(--org); font-size: 9.2pt; }
+  .front .tel { position: absolute; top: 28.4mm; left: 11mm; display: flex; align-items: baseline; gap: 3.4mm; }
+  .front .tel span { color: #bfe3d9; font-size: 9.5pt; font-weight: 700; letter-spacing: .1em; }
+  .front .tel b { font: 700 19pt/1.2 var(--num); letter-spacing: .04em; }
+  .front .qrs { position: absolute; top: 5.4mm; right: 10mm; display: flex; gap: 2mm; }
+  .front .qrs figure { display: flex; flex-direction: column; align-items: center; width: 34mm; }
+  .front .qr, .back .qr { border-radius: 1.6mm; }
+  .front .qr { width: 23mm; height: 23mm; }
+  .front .qrs figcaption { margin-top: 1.8mm; color: #d6ece6; font-size: 8.2pt; line-height: 1.5; text-align: center; white-space: nowrap; }
+  .front .qrs figcaption b { display: block; color: #fff; font-size: 9.6pt; }
+
+  /* ===== 裏面 ===== */
+  .back { background: var(--cream); }
+  .back h1 { position: absolute; top: 12.5mm; left: 13mm; color: var(--teal); font-size: 27pt; font-weight: 800; line-height: 1.3; }
+  .back .pills { position: absolute; top: 29.5mm; left: 13mm; display: flex; gap: 2.4mm; font-size: 13.5pt; font-weight: 700; line-height: 1.5; }
+  .back .pills span { padding: 1.1mm 5mm 1.3mm; border: .35mm solid var(--teal); border-radius: 6mm; background: #fff; color: var(--teal); }
+  .back .pills b { color: var(--org); }
+  .back .lead { position: absolute; top: 43.4mm; left: 13mm; font-size: 10pt; line-height: 1.75; }
+  .back .mark { position: absolute; top: 11mm; left: 164mm; width: 39mm; height: 43mm; }
+
+  .back .rows { position: absolute; top: 60mm; left: 13mm; display: grid; gap: 3.5mm; width: 190mm; }
+  .back .row { display: grid; grid-template-columns: 40mm 1fr 44mm; height: 41.5mm; overflow: hidden; border: .25mm solid var(--line); border-radius: 3mm; background: #fff; }
+  .back .row .lab { display: flex; flex-direction: column; justify-content: center; padding: 0 4.5mm; background: var(--teal); color: #fff; }
+  .back .row h2 { font-size: 16pt; font-weight: 800; line-height: 1.3; white-space: nowrap; }
+  .back .row h2 small { display: block; margin-top: .8mm; font-size: 9.6pt; font-weight: 600; }
+  .back .row .txt { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 0 0 5.5mm; }
+  .back .row p { font-size: 9.6pt; line-height: 1.75; white-space: nowrap; }
+  .back .row .gain { margin-top: 2.4mm; color: var(--teal); font-weight: 700; white-space: nowrap; }
+  .back .row .gain span { background: linear-gradient(transparent 60%, #fbd9c5 60%); }
+  .back .row figure { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.2mm; }
+  .back .row figure svg { width: 38mm; height: 19mm; }
+  .back .row figcaption { padding: .5mm 3mm; border-radius: 4mm; background: var(--mint); color: var(--teal); font-size: 8pt; font-weight: 700; }
+  .back .notes { position: absolute; top: 194.6mm; left: 13mm; color: var(--mute); font-size: 7.6pt; line-height: 1.7; }
+
+  .back .cta { position: absolute; top: 211mm; left: 13mm; width: 190mm; height: 60.5mm; padding: 8.4mm 8mm 0; border-radius: 4mm; background: var(--teal); color: #fff; }
+  .back .cta h2 { font-size: 23pt; font-weight: 800; line-height: 1.3; }
+  .back .cta .free { display: inline-block; margin-top: 3mm; padding: 1.2mm 4mm 1.4mm; border-radius: 2mm; background: var(--org); font-size: 13pt; font-weight: 700; line-height: 1.5; white-space: nowrap; }
+  .back .cta .txt { margin-top: 3.2mm; font-size: 10.2pt; line-height: 1.7; }
+  .back .cta .small { margin-top: 1.5mm; color: #bfe3d9; font-size: 7.4pt; }
+  .back .steps { position: absolute; top: 11mm; right: 21mm; display: grid; justify-items: center; gap: 0; width: 42mm; }
+  .back .steps li { display: grid; place-items: center; width: 100%; min-height: 9mm; padding: 1.2mm 0; border-radius: 2mm; background: #fff; color: var(--teal); font-size: 10pt; font-weight: 700; line-height: 1.35; text-align: center; }
+  .back .steps li small { display: block; font-size: 7.2pt; font-weight: 600; }
+  .back .steps li.arr { width: 0; min-height: 0; margin: 1.5mm 0; padding: 0; border: 1.9mm solid transparent; border-top: 2.4mm solid #bfe3d9; border-bottom: 0; border-radius: 0; background: none; }
+  .back .steps li.after { border: .35mm solid #bfe3d9; background: none; color: #fff; }
+  .back .brace { position: absolute; top: 12mm; right: 14.5mm; width: 4mm; height: 24.5mm; border: .5mm solid var(--org); border-left: 0; border-radius: 0 1.6mm 1.6mm 0; }
+  .back .brace b { position: absolute; top: 50%; left: 2.4mm; display: grid; place-items: center; width: 11.5mm; height: 11.5mm; border-radius: 50%; background: var(--org); font-size: 8.6pt; transform: translateY(-50%); }
+
+  .back .contact { position: absolute; top: 275.6mm; left: 13mm; display: flex; align-items: center; gap: 9mm; width: 190mm; height: 19.5mm; }
+  .back .contact .logo { color: var(--teal); font: 400 25pt/1 var(--logo); }
+  .back .contact dl { display: grid; grid-template-columns: auto 1fr; gap: 0 3.5mm; align-items: baseline; }
+  .back .contact dt { color: var(--teal-2); font-size: 8.8pt; font-weight: 700; }
+  .back .contact .t { color: var(--teal); font: 700 18pt/1.2 var(--num); letter-spacing: .04em; }
+  .back .contact .u { font-size: 9.4pt; }
+  .back .contact figure { display: flex; align-items: center; gap: 3mm; margin-left: auto; }
+  .back .contact figcaption { color: var(--teal); font-size: 8.6pt; font-weight: 700; white-space: nowrap; }
+  .back .contact .qr { width: 19.5mm; height: 19.5mm; outline: .3mm solid var(--teal); }
+</style>
+</head>
+<body data-plan="E" data-name="図解" data-note="明るい生成りと深い緑。情報がどこへ行くか、資料が何になるかを図で見せる、いちばん親しみやすい案。">
+<main class="stage">
+
+<section class="sheet front" data-label="表面（宛名面）">
+  <div class="hero">
+    <h1>その案件情報を、<br>クラウドAIに送って<em>大丈夫ですか。</em></h1>
+    <p class="sub">依頼人の人生に関わる<b>機密情報</b>が、<br>海外のサーバーに送信・保存される可能性があります。</p>
+
+    <svg class="dia" viewBox="0 0 90 72" role="img" aria-label="事務所の個人情報・証拠資料・書面案が、クラウドAIに送信され、海外のサーバーに保存される流れの図">
+      <defs>
+        <marker id="ah" viewBox="0 0 8 8" refX="6.4" refY="4" markerWidth="5.4" markerHeight="5.4" orient="auto"><path d="M1 1 7 4 1 7Z" fill="#c2521b"/></marker>
+      </defs>
+      <!-- 事務所 -->
+      <path d="M0 28.5 18 14.5 36 28.5Z" fill="#fff" stroke="#0f4f4a" stroke-width=".7" stroke-linejoin="round"/>
+      <rect x="2" y="28" width="32" height="33" rx="1.2" fill="#fff" stroke="#0f4f4a" stroke-width=".7"/>
+      <text x="18" y="25.6" font-size="3.6" text-anchor="middle" fill="#0f4f4a">事務所</text>
+      <g font-size="3.3" text-anchor="middle" fill="#0f4f4a">
+        <rect x="5" y="31.5" width="26" height="7" rx="3.5" fill="#e4f1ed"/><text x="18" y="36.2">個人情報</text>
+        <rect x="5" y="41" width="26" height="7" rx="3.5" fill="#e4f1ed"/><text x="18" y="45.7">証拠資料</text>
+        <rect x="5" y="50.5" width="26" height="7" rx="3.5" fill="#e4f1ed"/><text x="18" y="55.2">書面案</text>
+      </g>
+      <!-- 送信 -->
+      <path d="M36.5 42C43 42 44 34 48.2 29.6" fill="none" stroke="#c2521b" stroke-width=".8" stroke-dasharray="1.8 1.4" marker-end="url(#ah)"/>
+      <text x="39.6" y="47.4" font-size="3.4" fill="#c2521b">送信</text>
+      <!-- クラウドAI -->
+      <path d="M50 31a8.5 8.5 0 0 1 1.5-16.8 11.5 11.5 0 0 1 21.5-3 10.5 10.5 0 0 1 6 19.8Z" fill="#fff" stroke="#e66a2c" stroke-width=".8" stroke-linejoin="round"/>
+      <text x="64.6" y="23.8" font-size="4.3" text-anchor="middle" fill="#1e2b2a">クラウドAI</text>
+      <circle cx="83" cy="7" r="5" fill="#e66a2c"/><text x="83" y="9.4" font-size="6.6" text-anchor="middle" fill="#fff">?</text>
+      <!-- 保存 -->
+      <path d="M65 31.6V43.6" fill="none" stroke="#c2521b" stroke-width=".8" stroke-dasharray="1.8 1.4" marker-end="url(#ah)"/>
+      <text x="67.4" y="39.2" font-size="3.4" fill="#c2521b">保存</text>
+      <!-- 海外のサーバー -->
+      <g fill="#fff" stroke="#e66a2c" stroke-width=".7">
+        <rect x="53" y="45.4" width="24" height="7" rx="1.2"/><rect x="53" y="54.2" width="24" height="7" rx="1.2"/>
+      </g>
+      <g fill="#e66a2c"><circle cx="56.6" cy="48.9" r=".9"/><circle cx="59.6" cy="48.9" r=".9"/><circle cx="56.6" cy="57.7" r=".9"/><circle cx="59.6" cy="57.7" r=".9"/></g>
+      <text x="65" y="67.6" font-size="3.6" text-anchor="middle" fill="#c2521b">海外のサーバー</text>
+    </svg>
+  </div>
+
+  <div class="lower">
+    <h2 class="sec">クラウドAIの利用前に、確認したい4つのこと</h2>
+    <ol class="four">
+      <li><div class="hd"><span class="n">01</span><h3>個人情報</h3></div><p>氏名・住所・連絡先<br>相談内容・家族情報など</p><p class="ck">入力する情報を確認</p></li>
+      <li><div class="hd"><span class="n">02</span><h3>証拠資料</h3></div><p>書面・写真・PDF<br>音声データなど</p><p class="ck">利用先と保存先を確認</p></li>
+      <li><div class="hd"><span class="n">03</span><h3>書面案・交渉方針</h3></div><p>未提出の書面案<br>起案中の方針など</p><p class="ck">外部への送信範囲を確認</p></li>
+      <li><div class="hd"><span class="n">04</span><h3>情報の管理</h3></div><p>サービスごとに異なる<br>データの取り扱い</p><p class="ck">保存・利用条件を確認</p></li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <span class="logo">Alteor</span>
+    <p class="tag">案件情報を外部クラウドAIへ送信しない、事務所内AI。</p>
+    <p class="custom"><b>カスタマイズ対応</b>事務所ごとに必要な機能をご相談いただけます。</p>
+    <p class="tel"><span>TEL</span><b class="tbd">00-0000-0000</b></p>
+    <div class="qrs">
+      <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
+      <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sheet back" data-label="裏面">
+  <h1>たとえば、こんな案件に。</h1>
+  <p class="pills"><span>定型作業は<b>AI</b>に、</span><span>判断は<b>先生</b>に。</span></p>
+  <p class="lead">機密情報を外部クラウドAIへ送信せず、<br>先生と事務職員の皆さまの資料整理・書面作成を支援します。</p>
+  <svg class="mark" viewBox="0 0 39 43" aria-hidden="true">
+    <circle cx="19.5" cy="20" r="19" fill="#e4f1ed"/>
+    <path d="M5.5 20.5 19.5 9.5 33.5 20.5Z" fill="#fff" stroke="#0f4f4a" stroke-width=".7" stroke-linejoin="round"/>
+    <rect x="7.5" y="20" width="24" height="15" rx="1" fill="#fff" stroke="#0f4f4a" stroke-width=".7"/>
+    <rect x="12" y="23.4" width="15" height="8" rx="4" fill="#0f4f4a"/>
+    <text x="19.5" y="29.2" font-size="5" text-anchor="middle" fill="#fff">AI</text>
+  </svg>
+
+  <div class="rows">
+    <article class="row">
+      <div class="lab"><h2>破産・再生<small>の案件なら</small></h2></div>
+      <div class="txt">
+        <p>債権者から届く資料をまとめ、債権者一覧表の作成を支援。<br>収入・支出や財産の情報も、一覧に整理します。</p>
+        <p class="gain"><span>資料の転記・集計を減らし、案件の検討に時間を。</span></p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 44 22" aria-hidden="true">
+          <g fill="#fff" stroke="#1f7a70" stroke-width=".6" stroke-linejoin="round"><rect x="5" y="2" width="9" height="12" rx=".8"/><rect x="3" y="5" width="9" height="12" rx=".8"/><rect x="1" y="8" width="9" height="12" rx=".8"/></g>
+          <path d="M3 12h5M3 14.5h5M3 17h3" stroke="#1f7a70" stroke-width=".5"/>
+          <path d="M17 11h6.4" stroke="#e66a2c" stroke-width="1" stroke-linecap="round"/><path d="M22 8.2 25.4 11 22 13.8Z" fill="#e66a2c"/>
+          <rect x="28" y="2" width="15" height="18" rx="1" fill="#fff" stroke="#0f4f4a" stroke-width=".7"/>
+          <path d="M28 6.5h15v-3.5a1 1 0 0 0-1-1h-13a1 1 0 0 0-1 1Z" fill="#0f4f4a"/>
+          <path d="M28 11h15M28 15.5h15M33 6.5V20M38 6.5V20" stroke="#0f4f4a" stroke-width=".5"/>
+        </svg>
+        <figcaption>債権者一覧表</figcaption>
+      </figure>
+    </article>
+    <article class="row">
+      <div class="lab"><h2>離婚<small>の案件なら</small></h2></div>
+      <div class="txt">
+        <p>面談メモや収入・財産の資料を整理し、<br>申立書の下書きや、財産分与に向けた財産の一覧づくりを支援。</p>
+        <p class="gain"><span>相談内容を整理して、書面にまとめる負担を軽く。</span></p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 44 22" aria-hidden="true">
+          <g fill="#fff" stroke="#1f7a70" stroke-width=".6" stroke-linejoin="round"><rect x="5" y="2" width="9" height="12" rx=".8"/><rect x="3" y="5" width="9" height="12" rx=".8"/><rect x="1" y="8" width="9" height="12" rx=".8"/></g>
+          <path d="M3 12h5M3 14.5h5M3 17h3" stroke="#1f7a70" stroke-width=".5"/>
+          <path d="M17 11h6.4" stroke="#e66a2c" stroke-width="1" stroke-linecap="round"/><path d="M22 8.2 25.4 11 22 13.8Z" fill="#e66a2c"/>
+          <path d="M29 1.6h9.5l4.5 4.5V20.4H29Z" fill="#fff" stroke="#0f4f4a" stroke-width=".7" stroke-linejoin="round"/>
+          <path d="M38.5 1.6v4.5H43" fill="none" stroke="#0f4f4a" stroke-width=".7" stroke-linejoin="round"/>
+          <path d="M31.5 9.5h9M31.5 12.5h9M31.5 15.5h9M31.5 18h5" stroke="#0f4f4a" stroke-width=".5"/>
+        </svg>
+        <figcaption>申立書の下書き</figcaption>
+      </figure>
+    </article>
+    <article class="row">
+      <div class="lab"><h2>遺産相続<small>の案件なら</small></h2></div>
+      <div class="txt">
+        <p>戸籍や財産の資料から、相続人・遺産の情報を整理。<br>相続関係図の案や、遺産分割の申立書づくりを支援します。</p>
+        <p class="gain"><span>何通もの資料を読み合わせ、書き写す手間を減らすために。</span></p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 44 22" aria-hidden="true">
+          <g fill="#fff" stroke="#1f7a70" stroke-width=".6" stroke-linejoin="round"><rect x="5" y="2" width="9" height="12" rx=".8"/><rect x="3" y="5" width="9" height="12" rx=".8"/><rect x="1" y="8" width="9" height="12" rx=".8"/></g>
+          <path d="M3 12h5M3 14.5h5M3 17h3" stroke="#1f7a70" stroke-width=".5"/>
+          <path d="M17 11h6.4" stroke="#e66a2c" stroke-width="1" stroke-linecap="round"/><path d="M22 8.2 25.4 11 22 13.8Z" fill="#e66a2c"/>
+          <path d="M33.5 4.5h4M35.5 4.5V11M30 11h11M30 11v3M35.5 11v3M41 11v3" fill="none" stroke="#0f4f4a" stroke-width=".6"/>
+          <g fill="#0f4f4a"><rect x="28" y="2" width="5.5" height="5" rx=".8"/><rect x="37.5" y="2" width="5.5" height="5" rx=".8"/></g>
+          <g fill="#fff" stroke="#0f4f4a" stroke-width=".6"><rect x="27.5" y="14" width="5" height="5" rx=".8"/><rect x="33" y="14" width="5" height="5" rx=".8"/><rect x="38.5" y="14" width="5" height="5" rx=".8"/></g>
+        </svg>
+        <figcaption>相続関係図の案</figcaption>
+      </figure>
+    </article>
+  </div>
+
+  <p class="notes">※事務所の書式・業務に合わせた設定・追加開発を含む活用例です。<br>対応範囲・読み取り精度は資料をもとに確認します。<br>AIの出力は先生・事務職員の皆さまが確認し、法的な判断は先生が行います。</p>
+
+  <div class="cta">
+    <h2>まずは、ご相談だけでも。</h2>
+    <p class="free">ご相談からPoC（導入前のお試し検証）まで無料。</p>
+    <p class="txt">「この業務にも使える？」から、お聞かせください。<br>実際の使い方を確かめてから、導入をご検討いただけます。</p>
+    <p class="small">※無料検証の対象・範囲は事前にご相談。本導入・機材費は別途。</p>
+    <ol class="steps" aria-hidden="true">
+      <li>ご相談</li>
+      <li class="arr"></li>
+      <li>PoC<small>（導入前のお試し検証）</small></li>
+      <li class="arr"></li>
+      <li class="after">導入をご検討</li>
+    </ol>
+    <span class="brace" aria-hidden="true"><b>無料</b></span>
+  </div>
+
+  <div class="contact">
+    <span class="logo">Alteor</span>
+    <dl>
+      <dt>無料相談</dt><dd class="t tbd">00-0000-0000</dd>
+      <dt>ご相談・詳細</dt><dd class="u tbd">［ホームページURL］</dd>
+    </dl>
+    <figure><figcaption>ご相談・詳細</figcaption><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div></figure>
+  </div>
+</section>
+
+</main>
+<script src="shared/sheet.js"></script>
+</body>
+</html>
