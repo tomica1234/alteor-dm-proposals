@@ -7,77 +7,85 @@
 <title>案D 号外｜Alteor DM</title>
 <link rel="stylesheet" href="shared/sheet.css">
 <style>
-  /* 案D 号外：白地に極太ゴシック、黒・赤・黄。郵便物の束の中で最初に目に入ることを優先する。 */
+  /* 案D 号外：白地に極太ゴシック、黒・赤・黄。郵便物の束の中で最初に目に入ることを優先する。
+     本文まわりの文字は 11pt 以上にそろえる（※の但し書きだけ 7.6pt のまま）。 */
   .sheet { --k1: #111; --red: #d5121e; --yel: #ffe500; --din: "DIN Condensed", "Arial Narrow", "Helvetica Neue", sans-serif; color: var(--k1); }
   .tape { background: repeating-linear-gradient(-45deg, var(--k1) 0 4mm, var(--yel) 4mm 8mm); }
   .mk { background: linear-gradient(transparent 52%, var(--yel) 52%); }
 
+  /* 連絡先（表裏共通）：メールを主に、電話は小さめに */
+  .contact { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: baseline; gap: 0 3.2mm; }
+  .contact dt { color: var(--yel); font-size: 10.5pt; font-weight: 800; letter-spacing: .08em; }
+  .contact dt.s { font-size: 9.6pt; }
+  .contact .m { font: 700 22pt/1.2 var(--din); letter-spacing: .04em; white-space: nowrap; }
+  .contact .t { font: 700 16pt/1.2 var(--din); letter-spacing: .06em; white-space: nowrap; }
+
+  /* QR（表裏共通）：ホームページと実装デモの2つ */
+  .qrs { position: absolute; right: 10mm; display: flex; gap: 2mm; }
+  .qrs figure { display: flex; flex-direction: column; align-items: center; width: 36mm; }
+  .qrs figcaption { margin-top: 1.6mm; font-size: 9.4pt; line-height: 1.45; text-align: center; white-space: nowrap; }
+  .qrs figcaption b { display: block; color: var(--yel); font-size: 11pt; font-weight: 800; }
+
   /* ===== 表面 ===== */
   .front .tape { position: absolute; top: 103mm; left: 0; width: 216mm; height: 5mm; }
-  .front h1 { position: absolute; top: 112.5mm; left: 11mm; font-size: 38pt; font-weight: 900; line-height: 1.2; letter-spacing: -.01em; white-space: nowrap; }
-  .front .punch { position: absolute; top: 147mm; left: 0; padding: .6mm 8mm 1.4mm 11mm; background: var(--red); color: #fff; font-size: 54pt; font-weight: 900; line-height: 1.2; white-space: nowrap; }
-  .front .warn { position: absolute; top: 113mm; left: 158mm; width: 44mm; height: 40mm; }
-  .front .sub { position: absolute; top: 177.5mm; left: 11mm; font-size: 12pt; font-weight: 600; line-height: 1.8; }
-  .front .sec { position: absolute; top: 197.5mm; left: 0; display: flex; align-items: center; gap: 3mm; width: 216mm; height: 10mm; padding-left: 11mm; background: var(--k1); color: #fff; font-size: 13pt; font-weight: 800; letter-spacing: .03em; }
-  .front .sec::before { content: ""; width: 2.8mm; height: 2.8mm; background: var(--yel); }
-  .front .four { position: absolute; top: 211.5mm; left: 11mm; display: grid; grid-template-columns: repeat(4, 1fr); width: 194mm; }
-  .front .four li { padding: 0 3mm; border-left: .4mm solid var(--k1); }
+  .front h1 { position: absolute; top: 110.5mm; left: 11mm; font-size: 38pt; font-weight: 900; line-height: 1.2; letter-spacing: -.01em; white-space: nowrap; }
+  .front .punch { position: absolute; top: 144.5mm; left: 0; padding: .6mm 8mm 1.4mm 11mm; background: var(--red); color: #fff; font-size: 54pt; font-weight: 900; line-height: 1.2; white-space: nowrap; }
+  .front .warn { position: absolute; top: 111mm; left: 158mm; width: 44mm; height: 40mm; }
+  .front .sub { position: absolute; top: 172.5mm; left: 11mm; font-size: 14pt; font-weight: 600; line-height: 1.7; white-space: nowrap; }
+  .front .sec { position: absolute; top: 192mm; left: 0; display: flex; align-items: center; gap: 3mm; width: 216mm; height: 10.5mm; padding-left: 11mm; background: var(--k1); color: #fff; font-size: 15pt; font-weight: 800; letter-spacing: .03em; }
+  .front .sec::before { content: ""; width: 3.2mm; height: 3.2mm; background: var(--yel); }
+  .front .four { position: absolute; top: 205.5mm; left: 11mm; display: grid; grid-template-columns: 45.7mm 48.9mm 52.4mm 47mm; width: 194mm; }
+  .front .four li { padding: 0 2mm 0 3mm; border-left: .4mm solid var(--k1); }
   .front .four li:first-child { padding-left: 0; border-left: 0; }
   .front .four .n { display: block; height: 10mm; color: var(--red); font: 700 35pt/1 var(--din); }
-  .front .four h3 { margin-top: .6mm; font-size: 12.5pt; font-weight: 800; line-height: 1.4; white-space: nowrap; }
-  .front .four p { margin-top: 1.4mm; color: #222; font-size: 9.4pt; line-height: 1.55; white-space: nowrap; }
-  .front .four .ck { display: inline-flex; align-items: center; gap: 1.6mm; margin-top: 2.4mm; padding: .9mm 2.4mm .9mm 2mm; background: var(--k1); color: #fff; font-size: 8.7pt; font-weight: 700; }
-  .front .four .ck::before { content: ""; width: 2.4mm; height: 1.3mm; border-bottom: .5mm solid var(--yel); border-left: .5mm solid var(--yel); transform: translateY(-.4mm) rotate(-45deg); }
+  .front .four h3 { margin-top: .6mm; font-size: 14.5pt; font-weight: 800; line-height: 1.4; white-space: nowrap; }
+  .front .four p { margin-top: 1.2mm; color: #222; font-size: 11pt; line-height: 1.55; white-space: nowrap; }
+  .front .four .ck { display: inline-flex; align-items: center; gap: 1.4mm; margin-top: 2.2mm; padding: .9mm 2mm .9mm 1.8mm; background: var(--k1); color: #fff; font-size: 10pt; font-weight: 700; }
+  .front .four .ck::before { content: ""; width: 2.6mm; height: 1.4mm; border-bottom: .5mm solid var(--yel); border-left: .5mm solid var(--yel); transform: translateY(-.4mm) rotate(-45deg); }
 
-  .front .foot { position: absolute; top: 257mm; left: 0; width: 216mm; height: 46mm; background: var(--k1); color: #fff; }
+  .front .foot { position: absolute; top: 251mm; left: 0; width: 216mm; height: 52mm; background: var(--k1); color: #fff; }
   .front .logo { position: absolute; top: 4.5mm; left: 11mm; font: 400 26pt/1 var(--logo); }
-  .front .tag { position: absolute; top: 8.4mm; left: 54mm; font-size: 8.8pt; font-weight: 700; white-space: nowrap; }
-  .front .custom { position: absolute; top: 16.6mm; left: 11mm; display: flex; align-items: center; gap: 3mm; font-size: 9.6pt; font-weight: 600; white-space: nowrap; }
-  .front .custom b { padding: .9mm 3mm; background: var(--red); font-size: 9.6pt; font-weight: 800; }
-  .front .tel { position: absolute; top: 25.6mm; left: 11mm; display: flex; align-items: baseline; gap: 3.4mm; }
-  .front .tel span { color: var(--yel); font-size: 10pt; font-weight: 800; letter-spacing: .08em; }
-  .front .tel b { font: 700 28pt/1.2 var(--din); letter-spacing: .05em; }
-  .front .qrs { position: absolute; top: 4.5mm; right: 10mm; display: flex; gap: 2mm; }
-  .front .qrs figure { display: flex; flex-direction: column; align-items: center; width: 34mm; }
-  .front .qr { width: 23mm; height: 23mm; }
-  .front .qrs figcaption { margin-top: 1.8mm; font-size: 8.2pt; line-height: 1.5; text-align: center; white-space: nowrap; }
-  .front .qrs figcaption b { display: block; color: var(--yel); font-size: 9.6pt; font-weight: 800; }
+  .front .tag { position: absolute; top: 3.6mm; left: 54mm; font-size: 10.5pt; font-weight: 700; line-height: 1.5; white-space: nowrap; }
+  .front .custom { position: absolute; top: 17.2mm; left: 11mm; display: flex; gap: 3.4mm; font-size: 11pt; font-weight: 600; line-height: 1.45; white-space: nowrap; }
+  .front .custom b { display: grid; place-items: center; padding: 0 3mm; background: var(--red); font-weight: 800; }
+  .front .contact { position: absolute; top: 30mm; left: 11mm; }
+  .front .qrs { top: 4.5mm; }
+  .front .qr { width: 25mm; height: 25mm; }
 
   /* ===== 裏面 ===== */
-  .back .head { position: absolute; top: 0; left: 0; width: 216mm; height: 63mm; padding: 13mm 11mm 0; background: var(--k1); color: #fff; }
+  .back .head { position: absolute; top: 0; left: 0; width: 216mm; height: 62mm; padding: 12mm 11mm 0; background: var(--k1); color: #fff; }
   .back .head .tape { position: absolute; bottom: 0; left: 0; width: 216mm; height: 4mm; }
   .back .head h1 { font-size: 33pt; font-weight: 900; line-height: 1.2; letter-spacing: -.01em; }
-  .back .head .sub { margin-top: 3mm; color: var(--yel); font-size: 16pt; font-weight: 800; line-height: 1.5; }
-  .back .head .lead { margin-top: 1.6mm; font-size: 10.2pt; line-height: 1.7; }
+  .back .head .sub { margin-top: 3mm; color: var(--yel); font-size: 17pt; font-weight: 800; line-height: 1.5; }
+  .back .head .lead { margin-top: 1.4mm; font-size: 12pt; line-height: 1.7; }
 
-  .back .rows { position: absolute; top: 69mm; left: 11mm; display: grid; gap: 4mm; width: 194mm; }
-  .back .row { display: grid; grid-template-columns: 50mm 1fr; height: 38mm; }
-  .back .row .lab { position: relative; overflow: hidden; padding: 6mm 5mm 0 6mm; background: var(--red); color: #fff; }
+  .back .rows { position: absolute; top: 66.5mm; left: 11mm; display: grid; gap: 3mm; width: 194mm; }
+  .back .row { display: grid; grid-template-columns: 50mm 1fr; height: 35mm; }
+  .back .row .lab { position: relative; overflow: hidden; padding: 5mm 5mm 0 6mm; background: var(--red); color: #fff; }
   .back .row h2 { position: relative; z-index: 1; font-size: 20pt; font-weight: 900; line-height: 1.25; white-space: nowrap; }
-  .back .row h2 small { display: block; margin-top: .6mm; font-size: 10.5pt; font-weight: 700; }
+  .back .row h2 small { display: block; margin-top: .6mm; font-size: 12pt; font-weight: 700; }
   .back .row .big { position: absolute; right: 3mm; bottom: -7.5mm; color: rgba(255, 255, 255, .24); font: 700 76pt/1 var(--din); }
-  .back .row .txt { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 7mm; background: #f2f2f2; }
-  .back .row p { font-size: 10.5pt; line-height: 1.7; }
-  .back .row .gain { margin-top: 2.8mm; font-size: 11pt; font-weight: 800; }
-  .back .row .gain::before { content: "▶"; margin-right: 1.6mm; color: var(--red); font-size: 8pt; vertical-align: .3mm; }
-  .back .notes { position: absolute; top: 193.5mm; left: 11mm; color: #444; font-size: 7.6pt; line-height: 1.7; }
+  .back .row .txt { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 6mm 0 7mm; background: #f2f2f2; }
+  .back .row p { font-size: 12pt; line-height: 1.7; }
+  .back .row .gain { margin-top: 2.4mm; font-size: 12.5pt; font-weight: 800; }
+  .back .row .gain::before { content: "▶"; margin-right: 1.6mm; color: var(--red); font-size: 8.6pt; vertical-align: .4mm; }
+  .back .notes { position: absolute; top: 179.8mm; left: 11mm; color: #444; font-size: 7.6pt; line-height: 1.7; }
 
-  .back .cta { position: absolute; top: 211mm; left: 0; width: 216mm; height: 92mm; padding: 8.5mm 11mm 0; background: var(--red); color: #fff; }
+  .back .cta { position: absolute; top: 196.5mm; left: 0; width: 216mm; height: 106.5mm; padding: 8mm 11mm 0; background: var(--red); color: #fff; }
   .back .cta h2 { font-size: 27pt; font-weight: 900; line-height: 1.25; }
-  .back .cta .free { display: inline-block; margin-top: 3.2mm; padding: 1.5mm 5mm; background: #fff; color: var(--k1); font-size: 14pt; font-weight: 800; line-height: 1.5; }
-  .back .cta .txt { margin-top: 3.2mm; font-size: 10.5pt; font-weight: 600; line-height: 1.7; }
+  .back .cta .free { display: inline-block; margin-top: 3mm; padding: 1.5mm 5mm; background: #fff; color: var(--k1); font-size: 15pt; font-weight: 800; line-height: 1.5; }
+  .back .cta .txt { margin-top: 3mm; font-size: 12.5pt; font-weight: 600; line-height: 1.7; }
   .back .cta .small { margin-top: 1mm; font-size: 7.6pt; opacity: .9; }
   .back .badge { position: absolute; top: 7mm; right: 15mm; display: grid; place-items: center; width: 36mm; height: 36mm; border: .9mm solid var(--k1); border-radius: 50%; background: var(--yel); color: var(--k1); font-size: 25pt; font-weight: 900; letter-spacing: .04em; transform: rotate(-8deg); }
-  .back .band { position: absolute; top: 62mm; left: 0; width: 216mm; height: 30mm; background: var(--k1); }
-  .back .band .logo { position: absolute; top: 6.4mm; left: 11mm; font: 400 23pt/1 var(--logo); }
-  .back .band dl { position: absolute; top: 3.6mm; left: 50mm; display: grid; grid-template-columns: auto 1fr; gap: 0 3.5mm; align-items: baseline; }
-  .back .band dt { color: var(--yel); font-size: 8.8pt; font-weight: 800; }
-  .back .band .t { font: 700 25pt/1.1 var(--din); letter-spacing: .05em; }
-  .back .band .u { font-size: 9.4pt; }
-  .back .band figure { position: absolute; top: 2.6mm; right: 11mm; display: flex; align-items: center; gap: 3mm; }
-  .back .band figcaption { font-size: 8.6pt; font-weight: 700; white-space: nowrap; }
-  .back .band figcaption::after { content: " ▶"; color: var(--yel); font-size: 7pt; }
-  .back .band .qr { width: 19.5mm; height: 19.5mm; }
+
+  .back .band { position: absolute; top: 60.5mm; left: 0; width: 216mm; height: 46mm; background: var(--k1); }
+  .back .band .logo { position: absolute; top: 4.5mm; left: 11mm; font: 400 26pt/1 var(--logo); }
+  .back .band .free2 { position: absolute; top: 5.6mm; left: 54mm; padding: .8mm 3.2mm; background: var(--red); font-size: 11pt; font-weight: 800; line-height: 1.5; }
+  .back .band .contact { position: absolute; top: 15.4mm; left: 11mm; }
+  .back .band .web { position: absolute; top: 32.4mm; left: 11mm; display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; line-height: 1.5; white-space: nowrap; }
+  .back .band .web b { color: var(--yel); font-size: 10.5pt; font-weight: 800; }
+  .back .qrs { top: 4.5mm; }
+  .back .qr { width: 22.5mm; height: 22.5mm; }
 </style>
 </head>
 <body data-plan="D" data-name="号外" data-note="白地に極太ゴシックと黒・赤・黄。郵便物の束の中で最初に目に入ることを優先した、いちばん強い案。">
@@ -100,9 +108,12 @@
 
   <div class="foot">
     <span class="logo">Alteor</span>
-    <p class="tag">案件情報を外部クラウドAIへ送信しない、事務所内AI。</p>
-    <p class="custom"><b>カスタマイズ対応</b>事務所ごとに必要な機能をご相談いただけます。</p>
-    <p class="tel"><span>TEL</span><b class="tbd">00-0000-0000</b></p>
+    <p class="tag">案件情報を外部クラウドAIへ送信しない、<br>事務所内AI。</p>
+    <p class="custom"><b>カスタマイズ対応</b><span>事務所ごとに必要な機能を<br>ご相談いただけます。</span></p>
+    <dl class="contact">
+      <dt>MAIL</dt><dd class="m tbd">info@example.com</dd>
+      <dt class="s">TEL</dt><dd class="t tbd">00-0000-0000</dd>
+    </dl>
     <div class="qrs">
       <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
       <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
@@ -146,17 +157,22 @@
 
   <div class="cta">
     <h2>まずは、ご相談だけでも。</h2>
-    <p class="free">ご相談からPoC（導入前のお試し検証）まで無料。</p>
+    <p class="free">ご相談からPoC（導入前の検証）まで無料。</p>
     <p class="txt">「この業務にも使える？」から、お聞かせください。<br>実際の使い方を確かめてから、導入をご検討いただけます。</p>
     <p class="small">※無料検証の対象・範囲は事前にご相談。本導入・機材費は別途。</p>
     <span class="badge" aria-hidden="true">無料</span>
     <div class="band">
       <span class="logo">Alteor</span>
-      <dl>
-        <dt>無料相談</dt><dd class="t tbd">00-0000-0000</dd>
-        <dt>ご相談・詳細</dt><dd class="u tbd">［ホームページURL］</dd>
+      <p class="free2">無料相談</p>
+      <dl class="contact">
+        <dt>MAIL</dt><dd class="m tbd">info@example.com</dd>
+        <dt class="s">TEL</dt><dd class="t tbd">00-0000-0000</dd>
       </dl>
-      <figure><figcaption>ご相談・詳細</figcaption><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div></figure>
+      <p class="web"><b>ご相談・詳細</b><span class="tbd">［ホームページURL］</span></p>
+      <div class="qrs">
+        <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
+        <figure><div class="qr tbd"><span>URL確定後<br>QRを配置</span></div><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
