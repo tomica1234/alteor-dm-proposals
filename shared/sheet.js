@@ -54,7 +54,7 @@
     <span class="legend">
       <span><i class="l-trim"></i>仕上がり線（210×297mm。外側3mmは塗り足し）</span>
       <span><i class="l-safe"></i>文字・ロゴはこの内側に</span>
-      <span><i class="l-tbd"></i>未確定の仮置き（メールアドレス・電話番号・URL・QR）</span>
+      <span><i class="l-tbd"></i>未確定の仮置き（URL・QR など）</span>
     </span>`;
   body.prepend(bar);
 
