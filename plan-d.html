@@ -27,6 +27,9 @@
   .qrs figcaption b { display: block; color: var(--yel); font-size: 11pt; font-weight: 800; }
   .qrs img.qr { display: block; background: #fff; }
 
+  /* 所在地（表裏共通）：連絡先のいちばん下に1行 */
+  .office { position: absolute; left: 11mm; font-size: 10.5pt; font-weight: 500; line-height: 1.4; letter-spacing: .02em; white-space: nowrap; }
+
   /* ===== 表面 ===== */
   .front .tape { position: absolute; top: 103mm; left: 0; width: 216mm; height: 5mm; }
   .front h1 { position: absolute; top: 110.5mm; left: 11mm; font-size: 38pt; font-weight: 900; line-height: 1.2; letter-spacing: -.01em; white-space: nowrap; }
@@ -44,12 +47,13 @@
   .front .four .ck { display: inline-flex; align-items: center; gap: 1.4mm; margin-top: 2.2mm; padding: .9mm 2mm .9mm 1.8mm; background: var(--k1); color: #fff; font-size: 10pt; font-weight: 700; }
   .front .four .ck::before { content: ""; width: 2.6mm; height: 1.4mm; border-bottom: .5mm solid var(--yel); border-left: .5mm solid var(--yel); transform: translateY(-.4mm) rotate(-45deg); }
 
-  .front .foot { position: absolute; top: 251mm; left: 0; width: 216mm; height: 52mm; background: var(--k1); color: #fff; }
+  .front .foot { position: absolute; top: 249.5mm; left: 0; width: 216mm; height: 53.5mm; background: var(--k1); color: #fff; }
   .front .logo { position: absolute; top: 4.5mm; left: 11mm; font: 400 26pt/1 var(--logo); }
   .front .tag { position: absolute; top: 3.6mm; left: 54mm; font-size: 10.5pt; font-weight: 700; line-height: 1.5; white-space: nowrap; }
-  .front .custom { position: absolute; top: 17.2mm; left: 11mm; display: flex; gap: 3.4mm; font-size: 11pt; font-weight: 600; line-height: 1.45; white-space: nowrap; }
-  .front .custom b { display: grid; place-items: center; padding: 0 3mm; background: var(--red); font-weight: 800; }
-  .front .contact { position: absolute; top: 30mm; left: 11mm; }
+  .front .custom { position: absolute; top: 17mm; left: 11mm; display: flex; align-items: center; gap: 3mm; font-size: 10.5pt; font-weight: 600; line-height: 1.45; white-space: nowrap; }
+  .front .custom b { padding: .6mm 2.6mm; background: var(--red); font-weight: 800; }
+  .front .contact { position: absolute; top: 24.6mm; left: 11mm; }
+  .front .office { top: 41mm; }
   .front .qrs { top: 4.5mm; }
   .front .qr { width: 25mm; height: 25mm; }
 
@@ -61,7 +65,7 @@
   .back .head .lead { margin-top: 1.4mm; font-size: 12pt; line-height: 1.7; }
 
   .back .rows { position: absolute; top: 66.5mm; left: 11mm; display: grid; gap: 3mm; width: 194mm; }
-  .back .row { display: grid; grid-template-columns: 50mm 1fr; height: 35mm; }
+  .back .row { display: grid; grid-template-columns: 50mm 1fr; height: 33.5mm; }
   .back .row .lab { position: relative; overflow: hidden; padding: 5mm 5mm 0 6mm; background: var(--red); color: #fff; }
   .back .row h2 { position: relative; z-index: 1; font-size: 20pt; font-weight: 900; line-height: 1.25; white-space: nowrap; }
   .back .row h2 small { display: block; margin-top: .6mm; font-size: 12pt; font-weight: 700; }
@@ -70,23 +74,24 @@
   .back .row p { font-size: 12pt; line-height: 1.7; }
   .back .row .gain { margin-top: 2.4mm; font-size: 12.5pt; font-weight: 800; }
   .back .row .gain::before { content: "▶"; margin-right: 1.6mm; color: var(--red); font-size: 8.6pt; vertical-align: .4mm; }
-  .back .notes { position: absolute; top: 179.8mm; left: 11mm; color: #444; font-size: 7.6pt; line-height: 1.7; }
+  .back .notes { position: absolute; top: 175.3mm; left: 11mm; color: #444; font-size: 7.6pt; line-height: 1.7; }
 
-  .back .cta { position: absolute; top: 196.5mm; left: 0; width: 216mm; height: 106.5mm; padding: 8mm 11mm 0; background: var(--red); color: #fff; }
+  .back .cta { position: absolute; top: 192mm; left: 0; width: 216mm; height: 111mm; padding: 8mm 11mm 0; background: var(--red); color: #fff; }
   .back .cta h2 { font-size: 27pt; font-weight: 900; line-height: 1.25; }
   .back .cta .free { display: inline-block; margin-top: 3mm; padding: 1.5mm 5mm; background: #fff; color: var(--k1); font-size: 15pt; font-weight: 800; line-height: 1.5; }
   .back .cta .txt { margin-top: 3mm; font-size: 12.5pt; font-weight: 600; line-height: 1.7; }
   .back .cta .small { margin-top: 1mm; font-size: 7.6pt; opacity: .9; }
   .back .badge { position: absolute; top: 7mm; right: 15mm; display: grid; place-items: center; width: 36mm; height: 36mm; border: .9mm solid var(--k1); border-radius: 50%; background: var(--yel); color: var(--k1); font-size: 25pt; font-weight: 900; letter-spacing: .04em; transform: rotate(-8deg); }
 
-  .back .band { position: absolute; top: 60.5mm; left: 0; width: 216mm; height: 46mm; background: var(--k1); }
+  .back .band { position: absolute; top: 60.5mm; left: 0; width: 216mm; height: 50.5mm; background: var(--k1); }
   .back .band .logo { position: absolute; top: 4.5mm; left: 11mm; font: 400 26pt/1 var(--logo); }
   .back .band .free2 { position: absolute; top: 5.6mm; left: 54mm; padding: .8mm 3.2mm; background: var(--red); font-size: 11pt; font-weight: 800; line-height: 1.5; }
-  .back .band .contact { position: absolute; top: 15.4mm; left: 11mm; }
-  .back .band .web { position: absolute; top: 32.4mm; left: 11mm; display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; line-height: 1.5; white-space: nowrap; }
+  .back .band .contact { position: absolute; top: 15mm; left: 11mm; }
+  .back .band .web { position: absolute; top: 32mm; left: 11mm; display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; line-height: 1.5; white-space: nowrap; }
   .back .band .web b { color: var(--yel); font-size: 10.5pt; font-weight: 800; }
+  .back .office { top: 38mm; }
   .back .qrs { top: 4.5mm; }
-  .back .qr { width: 22.5mm; height: 22.5mm; }
+  .back .qr { width: 25mm; height: 25mm; }
 </style>
 </head>
 <body data-plan="D" data-name="号外" data-note="白地に極太ゴシックと黒・赤・黄。郵便物の束の中で最初に目に入ることを優先した、いちばん強い案。">
@@ -110,11 +115,12 @@
   <div class="foot">
     <span class="logo">Alteor</span>
     <p class="tag">案件情報を外部クラウドAIへ送信しない、<br>事務所内AI。</p>
-    <p class="custom"><b>カスタマイズ対応</b><span>事務所ごとに必要な機能を<br>ご相談いただけます。</span></p>
+    <p class="custom"><b>カスタマイズ対応</b><span>事務所ごとに必要な機能をご相談いただけます。</span></p>
     <dl class="contact">
       <dt>MAIL</dt><dd class="m">contact@alteor-ai.com</dd>
       <dt class="s">TEL</dt><dd class="t">070-3831-4466</dd>
     </dl>
+    <p class="office">〒203-0053　東京都東久留米市本町4-10-34</p>
     <div class="qrs">
       <figure><img class="qr" src="assets/qr-lp.svg" alt="ホームページ（jurislocal.alteor-ai.com）のQRコード"><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
       <figure><img class="qr" src="assets/qr-demo.svg" alt="実装デモ（jurislocal-demo.alteor-ai.com）のQRコード"><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
@@ -170,6 +176,7 @@
         <dt class="s">TEL</dt><dd class="t">070-3831-4466</dd>
       </dl>
       <p class="web"><b>ご相談・詳細</b><span>jurislocal.alteor-ai.com</span></p>
+      <p class="office">〒203-0053　東京都東久留米市本町4-10-34</p>
       <div class="qrs">
         <figure><img class="qr" src="assets/qr-lp.svg" alt="ホームページ（jurislocal.alteor-ai.com）のQRコード"><figcaption><b>ホームページ</b>サービスの詳細を見る</figcaption></figure>
         <figure><img class="qr" src="assets/qr-demo.svg" alt="実装デモ（jurislocal-demo.alteor-ai.com）のQRコード"><figcaption><b>実装デモ</b>画面・操作感を確認 →</figcaption></figure>
